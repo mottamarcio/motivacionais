@@ -4,3 +4,4 @@ export { default as HeroSection } from './HeroSection.svelte';
 export { default as CategoriesSection } from './CategoriesSection.svelte';
 export { default as PhraseCard } from './PhraseCard.svelte';
 export { default as ActionButtons } from './ActionButtons.svelte';
+export { default as FeatureSection } from './FeatureSection.svelte';
