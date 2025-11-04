@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-	import { Navbar }  from '$components';
+	import { Navbar, Footer }  from '$components';
 
 	let { children } = $props();
 </script>
@@ -12,3 +12,5 @@
 <Navbar />
 
 {@render children()}
+
+<Footer />
