@@ -5,6 +5,7 @@
         "Superação & Resiliência",
         "Autoestima & Confiança",
         "Foco & Produtividade",
+        "Pensamento Quântico",
         "Liderança",
         "Espiritualidade",
         "Gratidão",
