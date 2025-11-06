@@ -73,6 +73,16 @@
 		}
 	}
 
+	function handleSharePhrase() {
+		try {
+			const text = encodeURIComponent(`"${currentPhrase}" - Motivacionais.com.br`);
+			const url = `https://api.whatsapp.com/send?text=${text}`;
+			window.open(url, '_blank');
+		} catch (error) {
+			console.error('Error sharing phrase:', error);
+		}
+	}
+
 	onMount(async () => {
 		console.log('Component mounted...');
 		await loadPhrases();
@@ -94,6 +104,7 @@
 	<ActionButtons 
 		onNew={generateNewPhrase}
 		onCopy={handleCopyPhrase}
+		onShare={handleSharePhrase}
 		{ copying }
 	/>
 	<FeatureSection />

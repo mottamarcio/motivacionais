@@ -1,9 +1,10 @@
 <script lang="ts">
     import { RefreshCcw, Copy, Share2, Check } from '@lucide/svelte';
 
-    let { onNew, onCopy, copying } : { 
+    let { onNew, onCopy, onShare, copying } : { 
         onNew: () => void,
         onCopy: () => void,
+        onShare: () => void,
         copying: boolean
     } = $props();
 </script>
@@ -24,7 +25,8 @@
             Copiar
         {/if}
     </button>
-    <button class="flex items-center gap-2 bg-gray-100 text-gray-800 px-6 py-3 font-medium rounded-full text-sm hover:bg-teal-600 hover:text-white transition">
+    <button class="flex items-center gap-2 bg-gray-100 text-gray-800 px-6 py-3 font-medium rounded-full text-sm hover:bg-teal-600 hover:text-white transition"
+        onclick={onShare}>
         <Share2 size={20}/>
         Compartilhar
     </button>
