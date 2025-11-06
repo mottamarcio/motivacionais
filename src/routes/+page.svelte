@@ -51,6 +51,14 @@
 		}
 	}
 
+	// ===== Select Category =====
+	function selectCategory(categoryId: string) {
+		if (categoryId === currentCategory) return; // No change
+		console.log(`Category selected: ${categoryId}`);
+		currentCategory = categoryId;
+		if (Object.keys(phraseMap).length > 0) generateNewPhrase();
+	}
+
 	onMount(async () => {
 		console.log('Component mounted...');
 		await loadPhrases();
@@ -64,6 +72,7 @@
 	<CategoriesSection 
 		{ categories }
 		{ currentCategory }
+		onSelect={selectCategory}
 	/>
 	<PhraseCard 
 		{ currentPhrase }
