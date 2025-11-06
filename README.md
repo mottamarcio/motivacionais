@@ -1,38 +1,29 @@
-# sv
+# Motivacionais
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+> Transformando palavras em pequenas doses de motivação.
 
-## Creating a project
+Este é um projeto web simples, construído com SvelteKit, que serve como um gerador de frases motivacionais. O objetivo é fornecer uma interface limpa e rápida para que os usuários possam encontrar inspiração diária, filtrar por categorias e compartilhar facilmente as frases.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## ✨ Funcionalidades
 
-```sh
-# create a new project in the current directory
-npx sv create
+* **Geração Aleatória:** Gere uma nova frase da categoria selecionada com um único clique.
+* **Seleção de Categorias:** Filtre frases por diversas categorias, como "Motivação Diária", "Trabalho & Sucesso", "Foco & Produtividade", "Gratidão", etc.
+* **Copiar Frase:** Botão para copiar a frase atual para a área de transferência, pronta para ser colada.
+* **Compartilhar:** Botão de compartilhamento rápido para o WhatsApp.
+* **Design Responsivo:** Interface limpa e adaptável para desktop e dispositivos móveis.
 
-# create a new project in my-app
-npx sv create my-app
-```
+## 🛠️ Tecnologias Utilizadas
 
-## Developing
+Este projeto foi construído com uma stack moderna focada em performance e produtividade:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+* **Framework:** Svelte 5 (com Runes)
+* **Meta-Framework:** SvelteKit
+* **Linguagem:** TypeScript
+* **Estilização:** Tailwind CSS (via CDN)
+* **Ícones:** Lucide Icons (`@lucide/svelte`)
+* **Testes:** Vitest (com Playwright para testes de browser)
+* **Linting & Formatting:** ESLint e Prettier
 
-```sh
-npm run dev
+## ⚖️ Licença
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Este projeto está licenciado sob a **Licença Apache 2.0**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
