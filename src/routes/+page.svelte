@@ -63,7 +63,7 @@
 	// ===== Copy Phrase to Clipboard =====
 	async function handleCopyPhrase() {
 		try {
-			await navigator.clipboard.writeText(`"${currentPhrase}"`);
+			await navigator.clipboard.writeText(`"${currentPhrase}" - Motivacionais.com.br`);
 			copying = true;
 			setTimeout(() => copying = false, 2000);
 			console.log('Phrase copied to clipboard:', currentPhrase);
