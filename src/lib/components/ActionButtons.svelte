@@ -1,9 +1,12 @@
-<script>
+<script lang="ts">
     import { RefreshCcw, Copy, Share2 } from '@lucide/svelte';
+
+    let { onNew } : { onNew: () => void } = $props();
 </script>
 
 <div class="flex flex-wrap justify-center gap-4 mt-6 mb-20">
-    <button class="flex items-center gap-2 bg-gray-100 text-gray-800 px-6 py-3 font-medium rounded-full text-sm hover:bg-teal-600 hover:text-white transition">
+    <button class="flex items-center gap-2 bg-gray-100 text-gray-800 px-6 py-3 font-medium rounded-full text-sm hover:bg-teal-600 hover:text-white transition" 
+        onclick={onNew}>
         <RefreshCcw size={20}/>
         Nova frase
     </button>

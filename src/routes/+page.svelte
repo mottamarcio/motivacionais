@@ -77,6 +77,8 @@
 	<PhraseCard 
 		{ currentPhrase }
 	/>
-	<ActionButtons />
+	<ActionButtons 
+		onNew={generateNewPhrase}
+	/>
 	<FeatureSection />
 </main>
