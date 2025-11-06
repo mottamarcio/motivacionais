@@ -1,0 +1,64 @@
+# Nome do Workflow
+name: Build, Lint e Testes
+
+on:
+  # 1. Aciona em pushes para a branch 'main'
+  push:
+    branches: ['main']
+
+  # 2. Aciona em Pull Requests apontando para 'main'
+  pull_request:
+    branches: ['main']
+
+  # 3. Permite o acionamento manual (dispatch) pela UI do GitHub
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    # O tipo de máquina virtual para rodar o job
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Baixa o código do seu repositório
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      # 2. Configura o ambiente Node.js (usando v20)
+      - name: Configurar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # 3. Configura o cache do NPM para acelerar a instalação
+      - name: Cache das dependências (npm)
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-20-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-20-npm-
+
+      # 4. Instala as dependências do projeto
+      - name: Instalar dependências
+        run: npm install
+
+      # 5. Instala os browsers do Playwright (CRUCIAL para seus testes)
+      # Seus testes usam 'provider: playwright'
+      - name: Instalar browsers do Playwright
+        run: npx playwright install --with-deps
+
+      # 6. Executa o linter e o prettier check
+      - name: Verificar linting e formatação
+        run: npm run lint
+
+      # 7. Executa o svelte-check (verificação de tipos)
+      - name: Verificar tipos (Svelte Check)
+        run: npm run check
+
+      # 8. Executa todos os testes (unitários e de componente)
+      - name: Executar testes
+        run: npm run test
+
+      # 9. Gera a build de produção para garantir que ela não quebra
+      - name: Gerar build de produção
+        run: npm run build
