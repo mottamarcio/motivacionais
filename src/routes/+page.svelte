@@ -3,12 +3,13 @@
 	import { onMount } from "svelte";
 
 	type Category = { id: string; name: string };
-	type PhraseMap = { [key: string]: string[] };
+	type PhraseMap = { [key: string]: string[] };	
 
 	// ==== States (runes) ====
 	let phraseMap = $state<PhraseMap>({});
 	let currentCategory = $state('motivacao');
 	let currentPhrase = $state('Carregando frase...');
+	let copying = $state(false);
 
 	// ===== Categories =====
   const categories: Category[] = [
@@ -59,6 +60,19 @@
 		if (Object.keys(phraseMap).length > 0) generateNewPhrase();
 	}
 
+	// ===== Copy Phrase to Clipboard =====
+	async function handleCopyPhrase() {
+		try {
+			await navigator.clipboard.writeText(`"${currentPhrase}"`);
+			copying = true;
+			setTimeout(() => copying = false, 2000);
+			console.log('Phrase copied to clipboard:', currentPhrase);
+		} catch (error) {
+			copying = false;
+			console.error('Error copying phrase to clipboard:', error);
+		}
+	}
+
 	onMount(async () => {
 		console.log('Component mounted...');
 		await loadPhrases();
@@ -79,6 +93,8 @@
 	/>
 	<ActionButtons 
 		onNew={generateNewPhrase}
+		onCopy={handleCopyPhrase}
+		{ copying }
 	/>
 	<FeatureSection />
 </main>
