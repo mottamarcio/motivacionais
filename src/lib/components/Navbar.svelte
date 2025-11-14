@@ -1,5 +1,6 @@
 <script>
-	import { Quote, LayoutGrid, ChevronDown } from '@lucide/svelte';
+	// import { Quote, LayoutGrid, ChevronDown } from '@lucide/svelte';
+	import { Quote } from '@lucide/svelte';
 </script>
 
 <nav class="relative flex items-center justify-between max-w-6xl mx-auto px-6 py-8">
@@ -21,12 +22,12 @@
 <style>
 	/* Responsive */
 	@media (max-width: 768px) {
-        nav {
-            padding: 16px;
-        }
+		nav {
+			padding: 16px;
+		}
 
-		#categories {
-            display: none;
-        }   
+		/* #categories {
+			display: none;
+		} */
 	}
 </style>

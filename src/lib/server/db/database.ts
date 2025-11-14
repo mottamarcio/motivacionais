@@ -10,7 +10,7 @@ export type PhraseMap = { [key: string]: string[] };
  * Busca todas as categorias.
  */
 export async function getCategories(): Promise<Category[]> {
-  return db.select().from(categories).orderBy(categories.name);
+	return db.select().from(categories).orderBy(categories.name);
 }
 
 /**
@@ -18,14 +18,15 @@ export async function getCategories(): Promise<Category[]> {
  * Agora podemos fazer isso direto no SQL!
  */
 export async function getRandomPhrase(categoryId: string): Promise<string> {
-    const result = await db.select({ text: phrases.text })
-        .from(phrases)
-        .where(sql`${phrases.categoryId} = ${categoryId}`)
-        .orderBy(sql`RANDOM()`)
-        .limit(1);
+	const result = await db
+		.select({ text: phrases.text })
+		.from(phrases)
+		.where(sql`${phrases.categoryId} = ${categoryId}`)
+		.orderBy(sql`RANDOM()`)
+		.limit(1);
 
-    if (result.length > 0) {
-        return result[0].text;
-    }
-    return 'Nenhuma frase disponível para esta categoria.';
+	if (result.length > 0) {
+		return result[0].text;
+	}
+	return 'Nenhuma frase disponível para esta categoria.';
 }

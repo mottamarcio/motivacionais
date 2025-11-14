@@ -7,10 +7,10 @@ console.log('Running migrations...');
 const db = drizzle(new BetterSqlite3('motivacionais.db'));
 
 try {
-  migrate(db, { migrationsFolder: 'drizzle' });
-  console.log('Migrations applied successfully!');
-  process.exit(0);
+	migrate(db, { migrationsFolder: 'drizzle' });
+	console.log('Migrations applied successfully!');
+	process.exit(0);
 } catch (err) {
-  console.error('Error running migrations:', err);
-  process.exit(1);
+	console.error('Error running migrations:', err);
+	process.exit(1);
 }

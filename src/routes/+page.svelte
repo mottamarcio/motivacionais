@@ -6,7 +6,6 @@
 		ActionButtons,
 		FeatureSection
 	} from '$components';
-	import { onMount } from "svelte";
 
 	// Receive data from +page.server.ts
 	let { data } = $props();
@@ -67,7 +66,6 @@
 			console.error('Error sharing phrase:', error);
 		}
 	}
-
 </script>
 
 <main class="container mx-auto max-w-5xl px-6 py-12">
