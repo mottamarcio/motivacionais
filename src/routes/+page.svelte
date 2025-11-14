@@ -12,24 +12,28 @@
 	let { data } = $props();
 
 	// ==== States (runes) ====
-	let phraseMap = $state<{ [key: string]: string[] }>(data.phraseMap || {});
 	let currentCategory = $state('motivacao');
-	let currentPhrase = $state('Carregando frase...');
+	let currentPhrase = $state(data.phrase || 'Carregando frase...');
 	let copying = $state(false);
 
 	// ===== Categories =====
 	const categories = data.categories || [];
 
 	// ===== Generate New Phrase =====
-	function generateNewPhrase() {
+	async function generateNewPhrase() {
 		console.log(`Generating new phrase for category: ${currentCategory}`);
-		const phrases = phraseMap[currentCategory] || [];
-		if (phrases.length > 0) {
-			const randomIndex = Math.floor(Math.random() * phrases.length);
-			currentPhrase = phrases[randomIndex];
-			console.log(`Generated new phrase for category: ${currentPhrase}`);
-		} else {
-			currentPhrase = 'Nenhuma frase disponível para esta categoria.';
+		try {
+			const response = await fetch(`/api/phrase?category=${currentCategory}`);
+			const data = await response.json();
+			if (response.ok) {
+				currentPhrase = data.phrase;
+				console.log('New phrase fetched:', currentPhrase);
+			} else {
+				throw new Error(data.error || 'Failed to fetch phrase');
+			}
+		} catch (error) {
+			console.error('Error fetching new phrase:', error);
+			currentPhrase = 'Erro ao carregar frase. Tente novamente.';
 		}
 	}
 
@@ -38,7 +42,7 @@
 		if (categoryId === currentCategory) return; // No change
 		console.log(`Category selected: ${categoryId}`);
 		currentCategory = categoryId;
-		if (Object.keys(phraseMap).length > 0) generateNewPhrase();
+		if (Object.keys(categories).length > 0) generateNewPhrase();
 	}
 
 	// ===== Copy Phrase to Clipboard =====
@@ -63,10 +67,6 @@
 			console.error('Error sharing phrase:', error);
 		}
 	}
-
-	onMount(() => {
-		generateNewPhrase();
-	});
 
 </script>
 

@@ -14,25 +14,6 @@ export async function getCategories(): Promise<Category[]> {
 }
 
 /**
- * Busca todas as frases e as retorna no formato de mapa
- */
-export async function getPhraseMap(): Promise<PhraseMap> {
-  const rows = await db.select({
-    text: phrases.text,
-    categoryId: phrases.categoryId
-  }).from(phrases);
-
-  const phraseMap: PhraseMap = {};
-  for (const row of rows) {
-    if (!phraseMap[row.categoryId]) {
-      phraseMap[row.categoryId] = [];
-    }
-    phraseMap[row.categoryId].push(row.text);
-  }
-  return phraseMap;
-}
-
-/**
  * Busca uma frase aleatória (mais eficiente)
  * Agora podemos fazer isso direto no SQL!
  */
